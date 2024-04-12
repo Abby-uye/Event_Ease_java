@@ -90,8 +90,16 @@ public class UserServiceTest {
 
 }
 @Test
-    public void testThatICanCancelEventBooking(){
+    public void testThatICanCancelEventBooking() throws EventException {
         CancelReservationRequest request = new CancelReservationRequest();
+        request.setEventVenue("yaba");
+        request.setEventName("graduation");
+        request.setUserEmail("princessabigail@gmail.com");
+        request.setDate(LocalDate.of(2024,7,17));
+        CancelReservationResponse response = userService.cancelReservation(request);
+        log.info("{}",response);
+        assertNotNull(response);
+
 }
 
 }

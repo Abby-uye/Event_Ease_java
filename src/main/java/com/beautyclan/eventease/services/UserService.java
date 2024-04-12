@@ -14,4 +14,6 @@ public interface UserService {
     TicketReservationResponse reserveTicket(TicketReservationRequest request) throws EventException, BeyondLimitException;
 
     GetUserEventsResponse getAllEvents(GetUserEventsRequest request) throws EventException;
+
+    CancelReservationResponse cancelReservation(CancelReservationRequest request) throws EventException;
 }

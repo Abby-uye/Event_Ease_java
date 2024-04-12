@@ -78,6 +78,17 @@ private TicketRepository ticketRepository;
         return response;
     }
 
+    @Override
+    public CancelReservationResponse cancelReservation(CancelReservationRequest request) throws EventException {
+        User user = findBy(request.getUserEmail());
+        user.getEvents().remove(findEventByCriteria(
+                request.getEventName(),request.getEventVenue(),request.getDate()));
+        eventRepository.delete(findEventByCriteria(request.getEventName(), request.getEventVenue(), request.getDate()));
+        CancelReservationResponse response = new CancelReservationResponse();
+        response.setMessage("Reservation cancelled");
+        return response;
+    }
+
     private boolean beyondLimit(Integer pieces, List<Ticket> tickets) {
        return tickets.size() + pieces > 1000;
     }
